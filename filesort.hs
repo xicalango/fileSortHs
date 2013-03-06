@@ -24,8 +24,8 @@ getDirInfoForFile (x:xs) path =
   then Just x
   else getDirInfoForFile xs path
   where
-  extension = drop 1 $ takeExtension path
-  exts = diExts x
+    extension = drop 1 $ takeExtension path
+    exts = diExts x
 
 
 moveFileInto :: FilePath -> String -> IO ()
@@ -46,27 +46,19 @@ categorizeDirectory :: FSConfig -> String -> IO ()
 categorizeDirectory cfg executableName = do
   curDir <- getCurrentDirectory
   dirContent <- getDirectoryContents curDir
-  catFiles [d | d <- dirContent, not (isPrefixOf "." d), d /= executableName]
-  where
-    catFiles :: [FilePath] -> IO ()
-    catFiles [] = return ()
-    catFiles (x:xs) = do
-      isFile <- doesFileExist x
-      if isFile
-        then do
-          catFile x
-          catFiles xs
-        else
-          catFiles xs
+  mapM catFile [d | d <- dirContent, not (isPrefixOf "." d), d /= executableName]
+  return ()
 
+  where
     catFile :: FilePath -> IO ()
-    catFile path = 
-      if elem extension (cfgIgnoreExt cfg)
-      then return ()
-      else
-        case getDirInfoForFile (cfgDirs cfg) path of
-          Just dirInfo -> moveFileInto path (diName dirInfo)
-          Nothing -> moveFileInto path (cfgUnknownFolder cfg)
+    catFile path = do
+      isFile <- doesFileExist path
+      if (elem extension (cfgIgnoreExt cfg)) || (not isFile)
+        then return ()
+        else
+          case getDirInfoForFile (cfgDirs cfg) path of
+            Just dirInfo -> moveFileInto path (diName dirInfo)
+            Nothing -> moveFileInto path (cfgUnknownFolder cfg)
       where
         extension = drop 1 $ takeExtension path
 
