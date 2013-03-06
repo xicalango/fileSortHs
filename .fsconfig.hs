@@ -1,7 +1,7 @@
-FSConfig { cfgDirs = [ DirInfo { diName = "Archive"
+FSConfig { cfgDirs = [ DirInfo { diName = "Archives"
                                , diExts = [ "zip", "7z", "rar", "gz", "deb", "rpm", "tar", "iso", "tgz", "bz2", "dsl" ]
                                }
-				     , DirInfo { diName = "Programme"
+				     , DirInfo { diName = "Programs"
                                , diExts = [ "exe", "class", "com", "msi", "jar" ]
                                }
 				     , DirInfo { diName = "Code"
@@ -10,13 +10,13 @@ FSConfig { cfgDirs = [ DirInfo { diName = "Archive"
 				     , DirInfo { diName = "Video"
                                , diExts = [ "mp4", "avi", "mpg", "mpeg", "otrkey", "wmv", "flv" ]
                                }
-				     , DirInfo { diName = "Musik"
+				     , DirInfo { diName = "Music"
                                , diExts = [ "mp3", "wav", "ogg", "m4a" ]
                                }
-				     , DirInfo { diName = "Bilder"
+				     , DirInfo { diName = "Pictures"
                                , diExts = [ "jpg", "jpeg", "png", "bmp", "gif", "tiff", "tif", "svg" ]
                                }
-				     , DirInfo { diName = "Dokumente"
+				     , DirInfo { diName = "Documents"
                                , diExts = [ "txt", "pdf", "doc", "ods", "html", "ppt", "tex", "odt", "csv" ]
                                }
                      ]
