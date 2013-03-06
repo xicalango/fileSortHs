@@ -24,7 +24,7 @@ getDirInfoForFile (x:xs) path =
   then Just x
   else getDirInfoForFile xs path
   where
-  extension = drop 1 $ takeExtensions path
+  extension = drop 1 $ takeExtension path
   exts = diExts x
 
 
@@ -68,7 +68,7 @@ categorizeDirectory cfg executableName = do
           Just dirInfo -> moveFileInto path (diName dirInfo)
           Nothing -> moveFileInto path (cfgUnknownFolder cfg)
       where
-        extension = drop 1 $ takeExtensions path
+        extension = drop 1 $ takeExtension path
 
      
 
